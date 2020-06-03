@@ -133,64 +133,58 @@ export function DeterministicLinePlot({
       infectious: enabledPlots.includes(DATA_POINTS.Infectious)
         ? verifyPositive(x.current.infectious.total)
         : undefined,
-      severe: enabledPlots.includes(DATA_POINTS.Severe) ? Math.round(x.current.severe.total) || undefined : undefined,
-      critical: enabledPlots.includes(DATA_POINTS.Critical)
-        ? verifyPositive(Math.round(x.current.critical.total))
-        : undefined,
-      overflow: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? verifyPositive(Math.round(x.current.overflow.total))
-        : undefined,
+      severe: enabledPlots.includes(DATA_POINTS.Severe) ? x.current.severe.total || undefined : undefined,
+      critical: enabledPlots.includes(DATA_POINTS.Critical) ? verifyPositive(x.current.critical.total) : undefined,
+      overflow: enabledPlots.includes(DATA_POINTS.Overflow) ? verifyPositive(x.current.overflow.total) : undefined,
       recovered: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? verifyPositive(Math.round(x.cumulative.recovered.total))
+        ? verifyPositive(x.cumulative.recovered.total)
         : undefined,
-      fatality: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? verifyPositive(Math.round(x.cumulative.fatality.total))
-        : undefined,
+      fatality: enabledPlots.includes(DATA_POINTS.Fatalities) ? verifyPositive(x.cumulative.fatality.total) : undefined,
       hospitalBeds: nHospitalBeds,
       ICUbeds: nICUBeds,
 
       // Error bars
       susceptibleArea: enabledPlots.includes(DATA_POINTS.Susceptible)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.susceptible.total),
-            verifyPositive(upper[i].current.susceptible.total),
-          ], x.current.susceptible.total)
+        ? verifyTuple(
+            [verifyPositive(lower[i].current.susceptible.total), verifyPositive(upper[i].current.susceptible.total)],
+            x.current.susceptible.total,
+          )
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.infectious.total),
-            verifyPositive(upper[i].current.infectious.total),
-          ])
+        ? verifyTuple(
+            [verifyPositive(lower[i].current.infectious.total), verifyPositive(upper[i].current.infectious.total)],
+            x.current.infectious.total,
+          )
         : undefined,
       severeArea: enabledPlots.includes(DATA_POINTS.Severe)
-        ? verifyTuple([
-          verifyPositive(lower[i].current.severe.total),
-          verifyPositive(upper[i].current.severe.total)
-        ], x.current.severe.total)
+        ? verifyTuple(
+            [verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)],
+            x.current.severe.total,
+          )
         : undefined,
       criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.critical.total),
-            verifyPositive(upper[i].current.critical.total),
-          ], x.current.critical.total)
+        ? verifyTuple(
+            [verifyPositive(lower[i].current.critical.total), verifyPositive(upper[i].current.critical.total)],
+            x.current.critical.total,
+          )
         : undefined,
       overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
-        ? verifyTuple([
-            verifyPositive(lower[i].current.overflow.total),
-            verifyPositive(upper[i].current.overflow.total),
-          ], x.current.overflow.total)
+        ? verifyTuple(
+            [verifyPositive(lower[i].current.overflow.total), verifyPositive(upper[i].current.overflow.total)],
+            x.current.overflow.total,
+          )
         : undefined,
       recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
-        ? verifyTuple([
-            verifyPositive(lower[i].cumulative.recovered.total),
-            verifyPositive(upper[i].cumulative.recovered.total),
-          ], x.cumulative.recovered.total)
+        ? verifyTuple(
+            [verifyPositive(lower[i].cumulative.recovered.total), verifyPositive(upper[i].cumulative.recovered.total)],
+            x.cumulative.recovered.total,
+          )
         : undefined,
       fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
-        ? verifyTuple([
-            verifyPositive(lower[i].cumulative.fatality.total),
-            verifyPositive(upper[i].cumulative.fatality.total),
-          ], x.cumulative.fatality.total)
+        ? verifyTuple(
+            [verifyPositive(lower[i].cumulative.fatality.total), verifyPositive(upper[i].cumulative.fatality.total)],
+            x.cumulative.fatality.total,
+          )
         : undefined,
     })),
 
