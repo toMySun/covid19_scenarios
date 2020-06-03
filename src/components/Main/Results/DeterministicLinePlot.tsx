@@ -154,7 +154,7 @@ export function DeterministicLinePlot({
         ? verifyTuple([
             verifyPositive(lower[i].current.susceptible.total),
             verifyPositive(upper[i].current.susceptible.total),
-          ])
+          ], x.current.susceptible.total)
         : undefined,
       infectiousArea: enabledPlots.includes(DATA_POINTS.Infectious)
         ? verifyTuple([
@@ -163,31 +163,34 @@ export function DeterministicLinePlot({
           ])
         : undefined,
       severeArea: enabledPlots.includes(DATA_POINTS.Severe)
-        ? verifyTuple([verifyPositive(lower[i].current.severe.total), verifyPositive(upper[i].current.severe.total)])
+        ? verifyTuple([
+          verifyPositive(lower[i].current.severe.total),
+          verifyPositive(upper[i].current.severe.total)
+        ], x.current.severe.total)
         : undefined,
       criticalArea: enabledPlots.includes(DATA_POINTS.Critical)
         ? verifyTuple([
             verifyPositive(lower[i].current.critical.total),
             verifyPositive(upper[i].current.critical.total),
-          ])
+          ], x.current.critical.total)
         : undefined,
       overflowArea: enabledPlots.includes(DATA_POINTS.Overflow)
         ? verifyTuple([
             verifyPositive(lower[i].current.overflow.total),
             verifyPositive(upper[i].current.overflow.total),
-          ])
+          ], x.current.overflow.total)
         : undefined,
       recoveredArea: enabledPlots.includes(DATA_POINTS.Recovered)
         ? verifyTuple([
             verifyPositive(lower[i].cumulative.recovered.total),
             verifyPositive(upper[i].cumulative.recovered.total),
-          ])
+          ], x.cumulative.recovered.total)
         : undefined,
       fatalityArea: enabledPlots.includes(DATA_POINTS.Fatalities)
         ? verifyTuple([
             verifyPositive(lower[i].cumulative.fatality.total),
             verifyPositive(upper[i].cumulative.fatality.total),
-          ])
+          ], x.cumulative.fatality.total)
         : undefined,
     })),
 
