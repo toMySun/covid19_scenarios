@@ -9,6 +9,10 @@ export interface DetectLanguageParams {
 }
 
 export function detectLocale({ defaultLanguage, availableLocales, shorten = true }: DetectLanguageParams): LocaleKey {
+  if (typeof navigator === 'undefined') {
+    return defaultLanguage
+  }
+
   const navigatorLocal = (navigator ?? window.navigator) as NavigatorPlus
 
   let language
